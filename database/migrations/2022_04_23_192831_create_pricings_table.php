@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('pricings', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("product_id");
+            $table->unsignedBigInteger("size_id");
+            $table->integer("price");
             $table->timestamps();
         });
     }
