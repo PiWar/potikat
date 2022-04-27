@@ -21,7 +21,7 @@ class OrderSeeder extends Seeder
                 "user_email" => Str::random(10) . "@gmail.com",
                 "user_phone" => Str::random(11),
                 "total_price" => 1000,
-                "products_id" => "1,2,3,4",
+                "pricings_id" => "1,2,3,4",
             ];
             Order::create($order);
         }

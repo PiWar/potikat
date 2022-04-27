@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("user_email");
             $table->string("user_phone");
             $table->integer("total_price");
-            $table->string("products_id");
+            $table->string("pricings_id");
             $table->timestamps();
         });
     }

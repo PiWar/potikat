@@ -14,6 +14,16 @@ class Order extends Model
         "user_email",
         "user_phone",
         "total_price",
-        "products_id",
+        "pricings_id",
     ];
+
+    public function pricings()
+    {
+        $pricings = explode(",", $this->pricings_id);
+        $response =  [];
+        foreach ($pricings as $pricing) {
+            $response[] = Pricing::find($pricing);
+        }
+        return $response;
+    }
 }
