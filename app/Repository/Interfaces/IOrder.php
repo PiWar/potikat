@@ -9,4 +9,5 @@ interface IOrder {
     public function index();
     public function show(Order $order);
     public function destroy(Order $order);
+    public function showProduct(Order $order);
 }

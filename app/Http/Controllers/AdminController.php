@@ -28,6 +28,7 @@ class AdminController extends Controller
     public function logout()
     {
         auth()->user()->tokens()->delete();
+        session()->flush();
         return resJson(
             "successful logout",
             [],

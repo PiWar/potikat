@@ -28,7 +28,7 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         return resJson(
-            "all order",
+            "destroy order",
             $this->orderRepository->destroy($order),
             Response::HTTP_OK,
         );
@@ -37,7 +37,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         return resJson(
-            "all order",
+            "show order",
             $this->orderRepository->show($order),
             Response::HTTP_OK,
         );
@@ -47,8 +47,16 @@ class OrderController extends Controller
     {
         $data = $request->validated();
         return resJson(
-            "all order",
+            "store order",
             $this->orderRepository->store($data),
+            Response::HTTP_OK,
+        );
+    }
+
+    public function showProduct(Order $order){
+        return resJson(
+            "show order product",
+            $this->orderRepository->showProduct($order),
             Response::HTTP_OK,
         );
     }

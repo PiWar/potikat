@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class OrderResource extends JsonResource
+class PricingWithProductResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,13 +14,12 @@ class OrderResource extends JsonResource
      */
     public function toArray($request)
     {
+        self::withoutWrapping();
         return [
-            "uid" => $this->uid,
-            "user_email" => $this->user_email,
-            "user_phone" => $this->user_phone,
-            "address" => $this->address,
-            "total_price" => $this->total_price,
-            "products" => PricingProductResource::collection($this->pricings()),
+            "price" => $this->price,
+            "size" => $this->size->value,
+            "title" => $this->product->title,
+            "img" => $this->product->img
         ];
     }
 }

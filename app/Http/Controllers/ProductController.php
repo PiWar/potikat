@@ -9,6 +9,8 @@ use App\Repository\Interfaces\IProduct;
 use App\Repository\ProductRepository;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Request;
+
 
 class ProductController extends Controller
 {
@@ -23,6 +25,15 @@ class ProductController extends Controller
         return resJson(
             "all product",
             $this->productRepository->index(),
+            Response::HTTP_OK,
+        );
+    }
+
+    public function indexList()
+    {
+        return resJson(
+            "all list",
+            Product::all(),
             Response::HTTP_OK,
         );
     }
@@ -57,10 +68,12 @@ class ProductController extends Controller
 
     public function update(ProductUpdateRequest $request, Product $product)
     {
-        $data = $request->validated();
+        print_r($request->all());
+//        $data = $request->validated();
         return resJson(
             "update product",
-            ["result" => $this->productRepository->update($data, $product)],
+            // $this->productRepository->update($data, $product),
+            $request->all(),
             Response::HTTP_OK,
         );
     }

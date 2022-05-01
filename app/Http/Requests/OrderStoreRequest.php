@@ -26,6 +26,7 @@ class OrderStoreRequest extends RequestErrorStub
         return [
             "user_email" => "required|email",
             "user_phone" => "required",
+            "address" => "required",
             "pricings_id" => "required"
         ];
     }

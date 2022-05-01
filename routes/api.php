@@ -4,8 +4,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +23,9 @@ Route::controller(AdminController::class)->group(function () {
 
 Route::middleware("auth:sanctum")->group(function () {
     Route::controller(ProductController::class)->group(function () {
+        Route::get("/productList", "indexList");
         Route::delete("/product/{product}", "destroy");
-        Route::patch("/product/{product}", "update");
+        Route::post("/product/{product}", "update");
         Route::post("/product", "store");
     });
     Route::controller(PricingController::class)->group(function () {
@@ -34,14 +33,16 @@ Route::middleware("auth:sanctum")->group(function () {
         Route::post("/product/{product}/pricing", "store");
     });
     Route::controller(OrderController::class)->group(function () {
+        Route::get("/order/{order}/product", "showProduct");
         Route::get("/order", "index");
-        Route::post("/order", "store");
         Route::delete("/order/{order}", "destroy");
         Route::get("/order/{order}", "show");
 
     });
 });
 
+
+Route::post("/order", [OrderController::class, "store"]);
 Route::controller(ProductController::class)->group(function () {
     Route::get("/product", "index");
     Route::get("/product/{product}", "show");

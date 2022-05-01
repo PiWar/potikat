@@ -13,6 +13,7 @@ class Order extends Model
         "uid",
         "user_email",
         "user_phone",
+        "address",
         "total_price",
         "pricings_id",
     ];
@@ -20,9 +21,14 @@ class Order extends Model
     public function pricings()
     {
         $pricings = explode(",", $this->pricings_id);
+        if($pricings[count($pricings) - 1] == ""){
+            unset($pricings[count($pricings) - 1]);
+        }
         $response =  [];
         foreach ($pricings as $pricing) {
-            $response[] = Pricing::find($pricing);
+            $result = Pricing::query()->find($pricing);
+            if ($result) $response[] = $result;
+
         }
         return $response;
     }

@@ -58,7 +58,5 @@ class ProductRepository implements IProduct
         }
         $product->update($data);
         return ProductResource::make($product);
-
-
     }
 }

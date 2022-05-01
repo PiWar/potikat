@@ -20,6 +20,7 @@ class OrderSeeder extends Seeder
                 "uid" => Str::random(),
                 "user_email" => Str::random(10) . "@gmail.com",
                 "user_phone" => Str::random(11),
+                "address" => Str::random(12),
                 "total_price" => 1000,
                 "pricings_id" => "1,2,3,4",
             ];
